@@ -16,17 +16,13 @@ def swipe_object1_to_object2_by_id(object1_id, object2_id):
 
     object1_id = appium_driver.find_element(
         MobileBy.ACCESSIBILITY_ID, object1_id)
-    object1_id_x = object1_id.x
-    object1_id_y = object1_id.y
     object2_id = appium_driver.find_element(
         MobileBy.ACCESSIBILITY_ID, object1_id)
-    object2_id_x = object2_id.x
-    object2_id_y = object2_id.y
     swipe = ActionBuilder(appium_driver)
     finger = swipe.add_pointer_input(POINTER_TOUCH, "finger")
-    finger.create_pointer_move(duration=0, x=object1_id_x, y=object1_id_y)
+    finger.create_pointer_move(duration=0, x=object1_id.x, y=object1_id.y)
     finger.create_pointer_down(MouseButton.LEFT)
     finger.create_pointer_move(
-        duration=500, x=object2_id_x, y=object2_id_y)
+        duration=500, x=object2_id.x, y=object2_id.y)
     finger.create_pointer_up(MouseButton.LEFT)
     swipe.perform()
